@@ -1,3 +1,4 @@
+let bg;
 var font;
 var vehicles = [];
 
@@ -6,15 +7,17 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(800, 300);
-  background(0);
+  song = loadSound('assests/sorry.mp3');
+  createCanvas(1050, 450);
+  bg = loadImage('flower.jpg');
+  //background(0);
   // textFont(font);
   // textSize(100);
   // fill(255,0,0);
   // noStroke();
   // text('METAL', width/16, 250);
 
-  var points = font.textToPoints('METAL', width/16, 250, 100);
+  var points = font.textToPoints('BLOSSOM', 10, 265, 100);
   
   //console.log(points);
 
@@ -29,7 +32,7 @@ function setup() {
 }
 
 function draw() {
-  background(0); 
+  background(bg); 
   for (var i = 0; i < vehicles.length; i++){
     var v = vehicles[i];
     v.behaviors();
@@ -38,4 +41,13 @@ function draw() {
   }
  
 
+}
+
+function mousePressed() {
+  if (song.isPlaying()) {
+    // .isPlaying() returns a boolean
+    song.stop();
+  } else {
+    song.play();
+    }
 }
